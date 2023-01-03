@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTMLCollection，NodeList</title>
+</head>
+<body>
+<p id="test">
+    <span>node</span>
+    vs
+    <span>element</span>
+    <!--  测试  -->
+</p>
+<script>
+    /*
+    * 首先分清楚Element和Node的区别？
+    * DOM中的每一个元素都是Node
+    * Node是Element的基类，但是除了Element之外，Node还包含很多其他类型的元素，例如注释，文本等
+    * Element是html元素的基类，所有的html标签本身都属于element
+    * */
+
+    // 测试：输出NodeList,childNodes输出的是node list
+    const nodeList = document.getElementById('test').childNodes
+    console.log('nodelist', nodeList)
+    console.log(nodeList instanceof NodeList)
+
+    // 测试：输出HTMLCollection，children输出的是html collection，这里只能获取到两个span标签，其余的都不属于HTMLCollection
+    const htmlList = document.getElementById('test').children
+    console.log('htmllist', htmlList)
+    console.log(htmlList instanceof HTMLCollection)
+
+    /*
+    * 最后做一点说明，无论nodelist还是htmlcollection，二者都不是数组，都是类数组，注意掌握数组与类数组的异同，并掌握类数组转换为数组的方法
+    * */
+
+</script>
+</body>
+</html>

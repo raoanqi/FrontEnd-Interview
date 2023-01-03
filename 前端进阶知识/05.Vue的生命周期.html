@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的生命周期</title>
+</head>
+<body>
+<script>
+    /*
+    * 以vue3为例：
+    *
+    * beforeCreate
+    * 创建一个空白的vue实例，此时data，methods都没有初始化，所以还不能使用
+    *
+    * created
+    * vue的实例初始化完成，完成响应式绑定，初始化data，methods，可以对data，methods调用了，但是vue模板还没有开始渲染
+    *
+    * beforeMount
+    * 编译模板，调用render生成vdom，但是还没有渲染dom
+    *
+    * mounted
+    * 完成dom的渲染，组件创建完成
+    *
+    * beforeUpdate
+    * data发生变化，准备更新dom（但是还没有更新）
+    *
+    * updated
+    * data发生变化，并且dom更新完成
+    * 注意：不要在updated中修改data，可能会造成死循环
+    *
+    * beforeUnmount
+    * 组件进入销毁阶段，此时尚未销毁，组件依然可以正常使用，可以在整个阶段移除、解绑一些全局事件、自定义事件
+    *
+    * unmounted
+    * 组件已经销毁完毕，所有的子组件也已经销毁
+    *
+    * */
+
+    /*
+    * 额外注意一下keep-alive组件的生命周期
+    *
+    * activated：缓存组件被激活
+    *
+    * deactivated：缓存组件被隐藏
+    *
+    * */
+
+    /*
+    * 引申：
+    *
+    * vue什么时候操作dom比较合适？
+    * mounted和updated这两个周期中不能保证子组件的dom一定渲染完成，因此一般推荐在mounted中使用$nextTick来进行dom操作
+    *
+    * ajax放在那个生命周期？
+    * created和mounted中都可以
+    *
+    * vue3的composition api中生命周期有什么区别？
+    * 用setup代替了beforeCreate和created
+    * 用hooks函数形式，例如mounted改为onMounted
+    *
+    * */
+</script>
+</body>
+</html>

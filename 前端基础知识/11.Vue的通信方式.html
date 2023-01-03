@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue的通信方式</title>
+</head>
+<body>
+<script>
+    /*
+    * props与$emit：适合父子组件通信
+    *
+    * 自定义事件（事件总线）：适用于不相关的组件进行通信
+    * vue2中可以使用new Vue()，但是vue3中就不行了，因此vue3中需要使用第三方库，可以使用event-emitter，请注意，自定义事件在组件销毁时需要off掉
+    *
+    * $attrs:
+    * vue2中属性是放在$attrs中接收，方法是放在$listeners中进行接收，但是在vue3中都统一放在$attrs中进行接收
+    *
+    * $parent,$refs：适合父子组件通信
+    * 要在mounted中使用，不能在created中使用
+    * 在vue2中，可以使用$parent获取父组件实例进而获取父组件的属性，在父组件中可以使用$refs,$children子组件实例
+    * 在vue3中，可以使用$parent获取父组件实例进而获取父组件的属性，在父组件中可以使用$refs获取子组件实例
+    *
+    * provide/inject:适合于多层组件数据通信
+    *
+    * Vuex
+    * */
+</script>
+</body>
+</html>

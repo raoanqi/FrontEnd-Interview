@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for in和for of</title>
+</head>
+<body>
+<script>
+    /*
+    * 区别：
+    *
+    * 1、for in遍历得到的是key，对于数组来说就是index，for of遍历得到的value
+    *
+    * 2、适用于不同的数据类型：
+    * 对于对象类型：for in可以，但是for of不可以遍历
+    * 对于Map，Set：for in不可以遍历，但是for of可以
+    *
+    * */
+
+    /*
+    * for in和for of适用于遍历不同的数据结构，产生这种差异的原因在什么呢？请看下面
+    *
+    * for in用于可枚举的数据，包括数组，字符串，对象
+    * 那么什么是可枚举呢？就是看属性值得enumerable属性是否为true，可以使用Object.getOwnPropertyDescriptors()进行检查
+    *
+    * for of用于可迭代的数据，包括数组，字符串，Map，Set
+    * 那么什么是可迭代呢？就是看数据结构身上是否部署了iterator，即迭代器
+    *
+    * */
+
+
+
+    // for in迭代字符串
+    console.log('for in迭代字符串')
+    for (let i in 'test') {
+        console.log(i)
+    }
+</script>
+</body>
+</html>

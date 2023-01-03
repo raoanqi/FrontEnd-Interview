@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS的严格模式有什么区别</title>
+</head>
+<body>
+<script>
+    /*
+    * 一旦开启严格模式，会有以下限制：
+    *
+    * 禁止使用隐式全局变量
+    *
+    * 禁止使用with
+    *
+    * 会创建eval作用域
+    *
+    * this禁止指向window，严格模式下会指向undefined
+    *
+    * 函数参数不能重名
+    * */
+
+    //  创建eval作用域举例
+    'use strict'
+    let x = 10
+
+    eval(`let x = 20;
+    console.log('eval中', x)`)   // 这里由于创建了eval作用域，所以输出20
+
+    console.log('eval外', x)    // 这里不会侵入到eval作用域中，所以输出10
+
+    //  函数参数重名举例
+    const test = (x, x, y) => {   // 这个在浏览器控制台会报错
+        console.log(x, x, y)
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for...await...of</title>
+</head>
+<body>
+<script>
+    function createPromise(val) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(val)
+            }, 1000)
+        })
+    }
+
+    // 处理多个promise的方法
+    (async function () {
+        // 下面这三行，在调用createPromise的时候，promise就已经调用了，p1,p2,p3分别是100,200,300
+        const p1 = createPromise(100)
+        const p2 = createPromise(200)
+        const p3 = createPromise(300)
+
+        //  第一种：使用await逐个进行处理
+        const res1 = await p1
+        console.log('res1', res1)
+        const res2 = await p2
+        console.log('res2', res2)
+        const res3 = await p3
+        console.log('res3', res3)
+
+        //  定义一个promise的列表
+        const promiseList = [p1, p2, p3]
+
+        //  第二种：使用Promise.all这个api来进行处理
+        Promise.all(promiseList).then(res => console.log(res))
+
+        //  第三种：使用for...await...of来进行处理
+        for await (let res of promiseList) {
+            console.log(res)
+        }
+    })();
+
+    //  如果想让p1,p2,p3三个promise每隔1秒钟顺序输出一个，可以按照下面的方式来进行处理
+    (async function () {
+        //  第一种：使用await逐个进行处理
+        //  解释：不要像上面那样预先创建调用createPromise，一旦调用promise就立刻开始执行了，要想像下面这种，调用一个并完成输出之后再去进行调用
+        const res1 = await createPromise(100)
+        console.log(res1)
+        const res2 = await createPromise(200)
+        console.log(res2)
+        const res3 = await createPromise(300)
+        console.log(res3)
+
+        //  第二种：使用for...of进行处理，原理与第一种方式相同
+        const arr = [100, 200, 300]
+        for (let number of arr) {
+            const res = await createPromise(number)
+            console.log(res)
+        }
+    })()
+</script>
+</body>
+</html>
